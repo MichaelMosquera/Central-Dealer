@@ -67,11 +67,34 @@ public class CDRestController {
 		return tendero;
 	}
 	
+	@PostMapping("/tienda")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Tienda addTienda(@RequestBody Tienda tienda) {
+
+		// also just in case the pass an id in JSON ... set id to 0
+		// this is force a save of new item ... instead of update
+
+		//customer.setId(null);
+
+		tiendaService.saveTienda(tienda);
+
+		return tienda;
+	}
+	
 	// add mapping for PUT /customers - update existing customer
+	
+	@PutMapping("/tienda")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Tienda updateTienda(@RequestBody Tienda tienda) {
+		
+		tiendaService.saveTienda(tienda);
+		
+		return tienda;
+	}
 	
 	@PutMapping("/tenderos")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Tendero updateCustomer(@RequestBody Tendero tendero) {
+	public Tendero updateTendero(@RequestBody Tendero tendero) {
 		
 		tenderoService.saveTendero(tendero);
 		
